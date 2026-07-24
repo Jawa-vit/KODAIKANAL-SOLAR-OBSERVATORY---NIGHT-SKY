@@ -230,15 +230,15 @@ Generated using Python scripts and JSON datasets.
 
 # 👨‍💻 Developed By
 
-## Jawagar K R
+## Jawagar K R 
 
 B.Tech Computer Science and Business Systems
 
 VIT-AP University
 
-GitHub: https://github.com/YOUR_USERNAME
+GitHub: https://github.com/Jawa-vit
 
-LinkedIn: https://linkedin.com/in/YOUR_PROFILE
+LinkedIn: https://www.linkedin.com/in/jawagarfsd
 
 ---
 
