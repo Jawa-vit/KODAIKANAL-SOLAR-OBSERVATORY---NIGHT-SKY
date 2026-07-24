@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "location": "Kodaikanal, Tamil Nadu, India",
+    "generated_at": "2025-12-30T06:47:51.558662",
+    "source": "Computed (NASA ephemeris)"
+  },
+  "planets": {
+    "Mercury": {
+      "altitude_deg": 53.79,
+      "azimuth_deg": 200.0,
+      "distance_au": 1.364
+    },
+    "Venus": {
+      "altitude_deg": 56.06,
+      "azimuth_deg": 181.19,
+      "distance_au": 1.709
+    },
+    "Mars": {
+      "altitude_deg": 55.71,
+      "azimuth_deg": 173.46,
+      "distance_au": 2.412
+    },
+    "Jupiter": {
+      "altitude_deg": -54.64,
+      "azimuth_deg": 335.6,
+      "distance_au": 4.248
+    },
+    "Saturn": {
+      "altitude_deg": 10.27,
+      "azimuth_deg": 95.64,
+      "distance_au": 9.688
+    },
+    "Uranus": {
+      "altitude_deg": -38.53,
+      "azimuth_deg": 54.7,
+      "distance_au": 18.736
+    },
+    "Neptune": {
+      "altitude_deg": 7.97,
+      "azimuth_deg": 92.92,
+      "distance_au": 30.029
+    }
+  },
+  "bright_stars": {
+    "Sirius": {
+      "ra_deg": 101.287,
+      "dec_deg": -16.716
+    },
+    "Canopus": {
+      "ra_deg": 95.988,
+      "dec_deg": -52.696
+    },
+    "Arcturus": {
+      "ra_deg": 213.915,
+      "dec_deg": 19.182
+    },
+    "Vega": {
+      "ra_deg": 279.234,
+      "dec_deg": 38.783
+    },
+    "Capella": {
+      "ra_deg": 79.172,
+      "dec_deg": 45.998
+    }
+  }
+}

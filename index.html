@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kodaikanal Night Sky - Climate Adaptive + Weather</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<!-- ================= STAR BACKGROUND ================= -->
+<canvas id="starfield"></canvas>
+
+<!-- ========== SIDE PLANETS ========== -->
+<div class="side-planets left">
+    <div class="planet-system">
+        <img src="./assets/mars.png" class="planet-img" alt="Earth">
+        <div class="moon-orbit small"><span class="moon"></span></div>
+        <div class="moon-orbit large"><span class="moon"></span></div>
+    </div>
+    <div class="planet-system">
+        <img src="./assets/earth.png" class="planet-img" alt="Mars">
+        <div class="moon-orbit medium"><span class="moon"></span></div>
+    </div>
+</div>
+
+<div class="side-planets right">
+    <div class="planet-system big">
+        <img src="./assets/saturn.png" class="planet-img" alt="Saturn">
+        <div class="moon-orbit small"><span class="moon"></span></div>
+        <div class="moon-orbit medium"><span class="moon"></span></div>
+        <div class="moon-orbit large"><span class="moon"></span></div>
+    </div>
+</div>
+
+<!-- ================= SOLAR SYSTEM DECOR ================= -->
+<div class="solar-system">
+    <div class="sun"></div>
+    <div class="orbit mercury"><span></span></div>
+    <div class="orbit venus"><span></span></div>
+    <div class="orbit earth"><span></span></div>
+    <div class="orbit mars"><span></span></div>
+    <div class="orbit jupiter"><span></span></div>
+    <div class="orbit saturn"><span></span></div>
+    <div class="orbit uranus"><span></span></div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+    <h1 class="site-title">
+        <span class="main-title">KODAIKANAL &nbsp; SOLAR &nbsp; OBSERVATORY</span> 
+        <span class="night-sky">NIGHT &nbsp; SKY</span>
+        <a href="./solar_system_earth_centered.html"
+           class="live-link"
+           target="_blank">
+            🔴 LIVE PLANETS
+        </a>
+    </h1>
+</header>
+
+<!-- ================= MAIN CONTENT ================= -->
+<main class="content">
+
+    <!-- ===== Observation Input ===== -->
+    <section class="card input-card">
+        <h2 class="section-title">🕒 Observation Time</h2>
+        <p class="section-subtitle">IST / UTC / LST · Powered by NASA LRO Data + Real-Time Weather</p>
+
+        <div id="error-message" class="alert alert-error" style="display:none;"></div>
+
+        <form id="astronomy-form" class="form-grid">
+            <div class="form-group">
+                <label>📅 Date</label>
+                <input type="date" id="date-input" required>
+            </div>
+
+            <div class="form-group">
+                <label>⏰ Clock Time (HH:MM)</label>
+                <input type="time" id="time-input" required>
+            </div>
+
+            <div class="form-group">
+                <label>🌍 You are entering time in</label>
+                <select id="timezone-input">
+                    <option value="IST">IST (UTC+5:30)</option>
+                    <option value="UTC">UTC</option>
+                </select>
+            </div>
+
+            <div class="button-row">
+                <button type="submit" class="btn primary">🚀 Compute</button>
+                <button type="button" id="browser-time-btn" class="btn secondary">
+                    ⏱ Use current browser time (IST)
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <!-- ================= RESULTS ================= -->
+    <section id="results-container" style="display:none;">
+
+        <!-- ===== Sun & Moon Status ===== -->
+        <section class="card">
+            <h2 class="section-title">☀️ Sun & Moon Status</h2>
+            
+            <div class="info-grid">
+                
+                <div class="info-box">
+                    <h3>Sunrise (IST)</h3>
+                    <div class="value" id="sun-rise">--</div>
+                </div>
+                <div class="info-box">
+                    <h3>Solar Transit</h3>
+                    <div class="value" id="sun-transit">--</div>
+                </div>
+                <div class="info-box">
+                    <h3>Sunset (IST)</h3>
+                    <div class="value" id="sun-set">--</div>
+                </div>
+                
+                
+            </div>
+            
+            <div id="sky-status" class="badge"></div>
+        </section>
+
+        <!-- ===== Planets at This Instant ===== 
+        <section class="card">
+            <h2 class="section-title">🪐 Planets at This Instant</h2>
+            <p class="section-subtitle">Real-time weather data integrated</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Planet</th>
+                            <th>Elevation (°)</th>
+                            <th>Azimuth (°)</th>
+                            <th>Distance (AU)</th>
+                            <th>Visibility</th>
+                            <th>Weather</th>
+                            <th>Moon Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody id="instant-planets-body"></tbody>
+                </table>
+            </div>
+        </section> -->
+
+        <!-- ===== Planet Rise / Set ===== -->
+        <section class="card">
+            <h2 class="section-title">🌍 Planetrise / Planetset — <span id="table-date"></span></h2>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Planet</th>
+                            <th>Rise (IST)</th>
+                            <th>Set (IST)</th>
+                            <th>Transit (IST)</th>
+                            <th>Rise (UTC)</th>
+                            <th>Set (UTC)</th>
+                            <th>Transit (UTC)</th>
+                            <th>Max Elevation (°)</th>
+                            <th>LST (h)</th>
+                            <th>Visibility</th>
+                            <th>Moon Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody id="planet-table-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== Bright Stars ===== -->
+        <section class="card">
+            <h2 class="section-title">⭐ Bright Stars — <span id="star-table-date"></span></h2>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Star</th>
+                            <th>Rise (IST)</th>
+                            <th>Set (IST)</th>
+                            <th>Transit (IST)</th>
+                            <th>Rise (UTC)</th>
+                            <th>Set (UTC)</th>
+                            <th>Transit (UTC)</th>
+                            <th>Max Elevation (°)</th>
+                            <th>LST (h)</th>
+                            <th>Visibility</th>
+                            <th>Moon Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody id="star-table-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+    </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+    <p><strong>Climate-Adaptive Design:</strong> UI changes based on current season</p>
+    <p><strong>Research-Grade Precision:</strong> Moon data powered by NASA's LRO</p>
+    <p><strong>Weather Integration:</strong> Real-time weather data from Open-Meteo API</p>
+    <p style="margin-top: 0.5rem;">Developed by KSO I-Lab Team</p>
+</footer>
+
+<!-- ================= EXTERNAL JAVASCRIPT ================= -->
+<script src="./climate-detector.js"></script>
+<script src="./animation.js"></script>
+<script src="./Weather_fetcher.js"></script>
+<script src="./astronomy_live.js"></script>
+
+</body>
+</html>

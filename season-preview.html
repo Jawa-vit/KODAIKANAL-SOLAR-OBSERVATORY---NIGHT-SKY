@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Season Preview - All Themes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #000;
+            color: white;
+            padding: 2rem;
+        }
+
+        h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+    background-clip: text;          /* standard */
+    -webkit-background-clip: text;  /* Chrome / Safari */
+
+    color: transparent;             /* standard */
+    -webkit-text-fill-color: transparent; /* Safari */
+}
+
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .season-card {
+            border-radius: 20px;
+            padding: 2rem;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            transition: transform 0.3s ease;
+            border: 3px solid;
+        }
+
+        .season-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Summer Theme */
+        .summer {
+            background: radial-gradient(circle at bottom, #1a0f0a, #0a0505);
+            border-color: #ff6b35;
+        }
+
+        .summer h2 {
+            color: #ffd93d;
+            text-shadow: 0 0 20px #ff6b35;
+        }
+
+        /* Monsoon Theme */
+        .monsoon {
+            background: radial-gradient(circle at bottom, #0a1428, #000308);
+            border-color: #4a90e2;
+        }
+
+        .monsoon h2 {
+            color: #b8e6f0;
+            text-shadow: 0 0 20px #4a90e2;
+        }
+
+        /* Autumn Theme */
+        .autumn {
+            background: radial-gradient(circle at bottom, #1a0e0a, #000000);
+            border-color: #d4a574;
+        }
+
+        .autumn h2 {
+            color: #f4a460;
+            text-shadow: 0 0 20px #cd853f;
+        }
+
+        /* Winter Theme */
+        .winter {
+            background: radial-gradient(circle at bottom, #0a1520, #000510);
+            border-color: #7ec8e3;
+        }
+
+        .winter h2 {
+            color: #d4f1f9;
+            text-shadow: 0 0 20px #5fb3d1;
+        }
+
+        .emoji {
+            font-size: 4rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .season-card h2 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .season-card h3 {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .features {
+            list-style: none;
+            text-align: left;
+            width: 100%;
+        }
+
+        .features li {
+            padding: 0.5rem;
+            margin: 0.3rem 0;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .features li::before {
+            content: "✓ ";
+            margin-right: 0.5rem;
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .color-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .button {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px currentColor;
+        }
+
+        .summer .button {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+        }
+
+        .monsoon .button {
+            background: linear-gradient(135deg, #4a90e2, #50c9ce);
+            color: white;
+        }
+
+        .autumn .button {
+            background: linear-gradient(135deg, #d4a574, #cd853f);
+            color: white;
+        }
+
+        .winter .button {
+            background: linear-gradient(135deg, #7ec8e3, #5fb3d1);
+            color: white;
+        }
+
+        .info {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .info h3 {
+            margin-bottom: 1rem;
+            color: #ffd966;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>🌍 Climate-Adaptive Themes Preview</h1>
+
+<div class="grid">
+    <!-- SUMMER -->
+    <div class="season-card summer">
+        <div class="emoji">☀️</div>
+        <h2>Summer</h2>
+        <h3>March - May</h3>
+        
+        <ul class="features">
+            <li>Heat wave animations</li>
+            <li>Warm golden colors</li>
+            <li>Hazy summer sky</li>
+            <li>Sun-themed emojis</li>
+        </ul>
+        
+        <div class="color-palette">
+            <div class="color-box" style="background: #ff6b35;"></div>
+            <div class="color-box" style="background: #f7931e;"></div>
+            <div class="color-box" style="background: #ffd93d;"></div>
+        </div>
+        
+        <button class="button">View Summer Theme</button>
+    </div>
+
+    <!-- MONSOON -->
+    <div class="season-card monsoon">
+        <div class="emoji">🌧️</div>
+        <h2>Monsoon</h2>
+        <h3>June - September</h3>
+        
+        <ul class="features">
+            <li>Animated rain drops</li>
+            <li>Cool blue tones</li>
+            <li>Cloudy night sky</li>
+            <li>Water-themed emojis</li>
+        </ul>
+        
+        <div class="color-palette">
+            <div class="color-box" style="background: #4a90e2;"></div>
+            <div class="color-box" style="background: #50c9ce;"></div>
+            <div class="color-box" style="background: #b8e6f0;"></div>
+        </div>
+        
+        <button class="button">View Monsoon Theme</button>
+    </div>
+
+    <!-- AUTUMN -->
+    <div class="season-card autumn">
+        <div class="emoji">🍂</div>
+        <h2>Autumn</h2>
+        <h3>October - November</h3>
+        
+        <ul class="features">
+            <li>Clear starry sky</li>
+            <li>Golden earth tones</li>
+            <li>Pleasant weather</li>
+            <li>Autumn leaf emojis</li>
+        </ul>
+        
+        <div class="color-palette">
+            <div class="color-box" style="background: #d4a574;"></div>
+            <div class="color-box" style="background: #cd853f;"></div>
+            <div class="color-box" style="background: #f4a460;"></div>
+        </div>
+        
+        <button class="button">View Autumn Theme</button>
+    </div>
+
+    <!-- WINTER -->
+    <div class="season-card winter">
+        <div class="emoji">❄️</div>
+        <h2>Winter</h2>
+        <h3>December - February</h3>
+        
+        <ul class="features">
+            <li>Animated snowflakes</li>
+            <li>Icy blue colors</li>
+            <li>Crystal-clear sky</li>
+            <li>Winter-themed emojis</li>
+        </ul>
+        
+        <div class="color-palette">
+            <div class="color-box" style="background: #7ec8e3;"></div>
+            <div class="color-box" style="background: #5fb3d1;"></div>
+            <div class="color-box" style="background: #d4f1f9;"></div>
+        </div>
+        
+        <button class="button">View Winter Theme</button>
+    </div>
+</div>
+
+<div class="info">
+    <h3>✨ How It Works</h3>
+    <p>
+        Your website automatically detects the current month and applies the appropriate seasonal theme.
+        Colors, animations, weather effects, and emojis all change to match the season!
+    </p>
+    <p style="margin-top: 1rem; opacity: 0.7;">
+        <strong>Current Month:</strong> <span id="current-month"></span><br>
+        <strong>Active Theme:</strong> <span id="active-theme"></span>
+    </p>
+</div>
+
+<script>
+    // Display current info
+    const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+    const month = new Date().getMonth();
+    document.getElementById('current-month').textContent = months[month];
+    
+    let season;
+    const monthNum = month + 1;
+    if (monthNum >= 3 && monthNum <= 5) season = 'Summer ☀️';
+    else if (monthNum >= 6 && monthNum <= 9) season = 'Monsoon 🌧️';
+    else if (monthNum >= 10 && monthNum <= 11) season = 'Autumn 🍂';
+    else season = 'Winter ❄️';
+    
+    document.getElementById('active-theme').textContent = season;
+    
+    // Button functionality
+    document.querySelectorAll('.button').forEach(btn => {
+        btn.addEventListener('click', function() {
+            alert('Theme preview! In the actual site, this theme applies automatically based on the date.');
+        });
+    });
+</script>
+
+</body>
+</html>

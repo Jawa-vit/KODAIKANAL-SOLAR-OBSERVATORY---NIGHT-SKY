@@ -1,0 +1,579 @@
+/* =========================================
+   CLIMATE-ADAPTIVE STYLESHEET
+   Uses CSS variables for seasonal themes
+========================================= */
+
+/* ========== CSS VARIABLES (Dynamic) ========== */
+:root {
+    --season-primary: #8b5cf6;
+    --season-secondary: #3b82f6;
+    --season-accent: #ffd966;
+    --season-star-color: white;
+}
+
+/* ========== GLOBAL RESET ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: #eaeaf0;
+    background: radial-gradient(circle at bottom, #02030f, #000);
+    overflow-x: hidden;
+    min-height: 100vh;
+    transition: background 1s ease;
+}
+
+/* ========== STAR CANVAS ========== */
+#starfield {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+}
+
+/* ========== SOLAR SYSTEM DECORATION ========== */
+.solar-system {
+    position: fixed;
+    width: 420px;
+    height: 420px;
+    top: 80px;
+    right: 40px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.sun {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 26px;
+    height: 26px;
+    background: radial-gradient(circle, var(--season-accent), var(--season-primary));
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 40px var(--season-primary);
+    transition: all 1s ease;
+}
+
+.orbit {
+    position: absolute;
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.orbit span {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--season-primary);
+    transition: background 1s ease;
+}
+
+.mercury { width: 70px; height: 70px; animation: spin 8s linear infinite; }
+.venus { width: 110px; height: 110px; animation: spin 14s linear infinite; }
+.earth { width: 160px; height: 160px; animation: spin 20s linear infinite; }
+.mars { width: 210px; height: 210px; animation: spin 30s linear infinite; }
+.jupiter { width: 280px; height: 280px; animation: spin 50s linear infinite; }
+.saturn { width: 330px; height: 330px; animation: spin 70s linear infinite; }
+.uranus { width: 380px; height: 380px; animation: spin 90s linear infinite; }
+
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ========== SIDE PLANETS ========== */
+.side-planets {
+    position: fixed;
+    top: 52%;
+    transform: translateY(-50%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.side-planets.left {
+    left: 4%;
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+}
+
+.side-planets.right {
+    right: 6%;
+}
+
+.planet-system {
+    position: relative;
+    width: 280px;
+    height: 280px;
+}
+
+.planet-system.big {
+    width: 360px;
+    height: 360px;
+}
+
+.planet-img {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 0 40px var(--season-primary)) 
+            drop-shadow(0 0 110px var(--season-secondary));
+    transition: filter 1s ease;
+}
+
+.planet-system.big .planet-img {
+    width: 220px;
+    height: 220px;
+}
+
+.moon-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px dashed rgba(255,255,255,0.25);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: orbit linear infinite;
+}
+
+.moon-orbit.small { width: 190px; height: 190px; animation-duration: 6s; }
+.moon-orbit.medium { width: 260px; height: 260px; animation-duration: 10s; }
+.moon-orbit.large { width: 330px; height: 330px; animation-duration: 14s; }
+
+.moon {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #f8fafc;
+    border-radius: 50%;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(255,255,255,0.9);
+}
+
+@keyframes orbit {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ========== HEADER ========== */
+.site-header {
+    text-align: center;
+    padding: 1.5rem;
+    background: linear-gradient(to bottom, rgba(10, 15, 40, 0.9), rgba(0, 0, 0, 0));
+    transition: background 1s ease;
+}
+
+.site-title {
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.main-title {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    color: #eaeaf0;
+    text-shadow: 0 0 20px var(--season-primary);
+    transition: text-shadow 1s ease;
+}
+
+.night-sky {
+    font-size: 1.5rem;
+    letter-spacing: 0.3em;
+    color: var(--season-accent);
+    font-weight: 700;
+    transition: color 1s ease;
+}
+
+.live-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--season-primary);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--season-primary);
+    border-radius: 999px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.live-link:hover {
+    background: var(--season-primary);
+    color: white;
+    box-shadow: 0 0 15px var(--season-primary);
+    transform: scale(1.05);
+}
+
+/* ========== CONTENT ========== */
+.content {
+    max-width: 1400px;
+    margin: auto;
+    padding: 1.5rem;
+}
+
+/* ========== CARDS ========== */
+.card {
+    background: rgba(10, 15, 35, 0.85);
+    backdrop-filter: blur(6px);
+    border-radius: 14px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--season-primary);
+    transition: border-color 1s ease, box-shadow 1s ease;
+}
+
+.card:hover {
+    box-shadow: 0 0 30px var(--season-primary);
+}
+
+.input-card {
+    max-width: 980px;
+    width: 90%;
+    padding: 2.4rem 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 18px;
+    background: linear-gradient(135deg, 
+        rgba(10,15,35,0.9), 
+        rgba(20,25,60,0.95));
+    border: 2px solid var(--season-primary);
+    box-shadow: 
+        0 0 40px var(--season-primary), 
+        inset 0 0 25px rgba(255, 255, 255, 0.06);
+    transition: all 1s ease;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    color: var(--season-accent);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    transition: color 1s ease;
+}
+
+.section-subtitle {
+    text-align: center;
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+}
+
+/* ========== FORM ========== */
+.form-grid {
+    display: grid;
+    gap: 1.2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 0.75rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, 
+        rgba(0, 0, 0, 0.6), 
+        rgba(30, 40, 120, 0.35));
+    border: 2px solid var(--season-primary);
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:hover,
+.form-group select:hover {
+    border-color: var(--season-accent);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--season-accent);
+    box-shadow: 0 0 14px var(--season-accent);
+}
+
+/* ========== BUTTONS ========== */
+.button-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.btn {
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn.primary {
+    background: linear-gradient(to right, var(--season-secondary), var(--season-primary));
+    color: white;
+}
+
+.btn.secondary {
+    background: linear-gradient(to right, #4b5563, #374151);
+    color: white;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px var(--season-primary);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* ========== ALERTS ========== */
+.alert {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.alert-error {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid #ef4444;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.badge-ok {
+    background: rgba(34, 197, 94, 0.2);
+    border: 1px solid var(--season-primary);
+    transition: border-color 1s ease;
+}
+
+.badge-warn {
+    background: rgba(234, 179, 8, 0.2);
+    border: 1px solid var(--season-accent);
+    transition: border-color 1s ease;
+}
+
+/* ========== SUN/MOON INFO ========== */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.info-box {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid var(--season-primary);
+    transition: border-color 1s ease;
+}
+
+.info-box h3 {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+
+.info-box .value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--season-accent);
+    transition: color 1s ease;
+}
+
+/* ========== VISIBILITY BAR ========== */
+.visibility-bar {
+    position: relative;
+    width: 100%;
+    height: 28px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.visibility-fill {
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+.visibility-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+/* ========== TABLES ========== */
+.table-wrapper {
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(15, 20, 60, 0.9);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+thead {
+    background: linear-gradient(90deg, var(--season-secondary), var(--season-primary));
+    transition: background 1s ease;
+}
+
+thead th {
+    padding: 14px;
+    font-size: 0.95rem;
+    color: #fff;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+tbody td {
+    padding: 12px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #f0f0ff;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+tbody tr:hover {
+    background: var(--season-primary);
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--season-primary), 
+        transparent);
+    opacity: 0.3;
+    transform: scale(1.01);
+    transition: 0.3s ease;
+}
+
+tbody td:first-child {
+    font-weight: bold;
+    color: var(--season-accent);
+    font-size: 1rem;
+    transition: color 1s ease;
+}
+
+/* ========== FOOTER ========== */
+.site-footer {
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.8;
+    padding: 2rem 1rem;
+    line-height: 1.6;
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+.site-footer strong {
+    color: var(--season-accent);
+    transition: color 1s ease;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .solar-system, 
+    .side-planets {
+        display: none;
+    }
+
+    table {
+        font-size: 0.8rem;
+    }
+
+    thead th,
+    tbody td {
+        padding: 8px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .site-title {
+        gap: 0.5rem;
+    }
+
+    .main-title {
+        font-size: 1.5rem;
+        letter-spacing: 0.1em;
+    }
+
+    .night-sky {
+        font-size: 1.2rem;
+    }
+    
+    #season-indicator {
+        top: 10px !important;
+        right: 10px !important;
+        font-size: 0.75rem !important;
+        padding: 0.5rem 0.8rem !important;
+    }
+}
